@@ -1,0 +1,8 @@
+Servidor: localhost
+
+Nombre de Base de datos : tigerfoo_db
+
+Usuario: tigerfoo_admin
+
+Password: ^gymv$}K%SMe
+

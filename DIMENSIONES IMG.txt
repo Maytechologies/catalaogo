@@ -1,0 +1,22 @@
+
+
+## DIMENSIONES DE IMAGENES PARA EL PROYECTO COSMETICOS##
+
+*IMAGEN DE BANNER : banner-product -> 719px x 638px
+
+*IMAGEN BACKGROUND PAGINA : bg -> 1920px x 1080px
+
+*IMAGEN PRODUCTOS SLIDES product-img -> 533px x 296px
+
+
+--------------------------
+Nombre del Emprendimiento: 
+--------------------------
+
+make stop
+
+
+logo:rediseñar
+
+Categorias : Rostros, Cejas, Ojos y Labios 
+

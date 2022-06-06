@@ -1,0 +1,171 @@
+inicio del proyecto web restaurant, donde buscamos integrar una pagina web con una base de datos
+logrando asi darle mantenimiento a la informacion del sitio web llegando a convertirlo en un
+SITIO WEB DINAMICO Y AUTO ADMINISTRABLE
+
+1 - SE CREARON LAS ESTURCTURAS DE ARCHIVOS
+
+    ADMIN > Dashbosart ADMINISTRABLE
+
+    Carpeta INCLUDEWEB , donde separamos las diferentes sesiones de la pagina web 
+
+    header === ECHO**
+
+    footer === ECHO**
+
+    contact === ''
+
+2 - Actualizaron links de navegacion de sitio web en el header y footer
+
+3 - Se creo la base de datos restaurant_card
+    se registraron la tablas : 
+    - datos{informacion empresarial del cliente}, 
+    - tipo_producto {variedad}, "se relaciono con la tabla productos"
+    - productos{informacion del producto terminado}
+
+
+4 - MODULO TIPO DE PRODUCTOS**
+
+   - CreateTipo.php => ****ECHO****
+   - showTipo.php   => ****ECHO****
+   - deleteTipo (funcion ejecutada dentro de showTipo) ****ECHO****
+   - updateTipo.php => realizado a un 90%, (faltante al no usar una nueva imagen, entonces coservar la actual) =>ECHO****
+   - updateTipo.php => se efectuo una consulta SQL a la tabla estado, en el formulario se aplico un while al select estado capturando el valor existente o actualizado 
+     se envio por method POS a la sentencia UPDATE. ****ECHO****
+
+
+5 - Se genero un boton con accion modal Bootstrap4 para visulizar la ficha del registro Tipo_producto === ECHO====
+
+
+6 - MODULO PRODUCTOS**
+
+ - Se implemento el modulo showProductos.php, integrandolo con data tables la columnna Acciones esta compuesta por 4 botones
+    (Ver Detalles, imagen modal, editar, eliminar).
+
+ - Se Desarrollo el modulo de Mantenimiento para la tabla (Modal Producto) este modulo se ejecutara posterirmente al registrar un producto que
+    se necesite visualizar su imagen modal en la carta.
+
+ - Se implemento un modal para efectuar la actualizacion del registro producto modals/updateProducto.php, ya se encuentra vinculado 
+    el include  
+
+ - Se Desarrollo la pagina addUpdateProducto.php la cual recibirar el POST enviado desde el modal UpdateProducto.php(****ECHO***)
+
+ - Se desarrollo modulo CreateModal el cual permite insertar nuevos registros en la DB modal_productos, modulo iniciado por medio de 
+    boton modal en el listado de productos.
+
+- MODULO UPDATE > Productos : Vincular en el campo select el tipo de producto y lograr visualizar el tipo al cual pertenece el producto en el modal update.(****ECHO***)
+
+- add al modal de editar producto el select con opciones de modal imagen y label img con imagen previa del modal.(****ECHO***)
+
+- Se agrego la tabla ESTADO en la consulta SQL Avanzada SQL productos logrando consultar 4 tablas para el query ($productos)
+
+SELECT p.id, p.nombre, p.small_img, p.precio, p.ingredientes, p.tipo_id, p.creado, t.tipo_nombre, p.modal_img_id as id_modal, m.nombre_modal, m.img_modal, st.name_status as estado 
+         FROM productos as p
+         INNER JOIN modal_producto as m
+         ON p.modal_img_id = m.id_modal
+         INNER JOIN tipo_producto as t
+         ON p.tipo_id = t.id
+         INNER JOIN estado as st
+         ON p.estado_id = st.id_status; (****ECHO***)
+
+
+
+7 - MODULO USUARIOS**
+
+- Se amerita tabla tipo_usuario, para relacionarla con la tabla usuario, asi poder efectuar roles de usuarios y permitir o limitar el acceso a X modulo. (****ECHO***)
+
+- Se implemento el modulo showUser.php, integrandolo con data tables la columnna Acciones esta compuesta por 4 botones(****ECHO***)
+    (Ver Detalles, nuevo registro, editar, eliminar).
+
+ - Se Desarrollo el modulo de Mantenimiento  (Nuevo registro) con campos de la tabla usuarios y relacionado con tipo de usuario(****ECHO***)
+
+ - modulo CreateUser el cual reciba los datos (string / files) desde el modal newuser.php logrado el nuevo registro de la tabla.(****ECHO***)
+
+-Modulo Eliminar User usando Modal personalizado (nombre, email, perfil de usuario, foto "Border Radius"). (****ECHO***)
+
+- modulo editar usuario (Nombre, Email, Foto, Tipo de Usuario)
+  // NOTA: teclear cuidadosamente la sentencia SQL, encerrar los campos tipo string entre '' y los campos tipo numero sin comillas
+            $query = "UPDATE usuarios SET  user_name = '${user_name}',
+                                            email = '${email}',
+                                            password = '${password}',
+                                            photo = '${nombreImagen}',
+                                            tipo_id = ${tipo_id}
+                                            WHERE id = ${id} ";   (****ECHO***)
+
+
+******************
+------CAMBIOS-----
+******************
+se modifico en nombre al campo (status  a estado) de todas las tablas por coincidencia con codigo interno SQL..(****ECHO***).
+
+* Se agrego un modal al modulo DelUser, presentando los datos del usuario a eliminar y solicitando una confirmacion de parte del usuario...(****ECHO***).
+
+- DashBoard Principal con cards e informacion general del sistema.(****ECHO***).
+
+- Se Aplico Cambio a la Sesion Menu.php -> Menu2.php donde se reemplazo la tabla por Cards small mostrando foto del producto, Nombre, Precio
+  la Card cuenta con  CSS - cursor pointer y el vinculo al un modal enlazado con el id del producto mostrando una imagen mas amplia con logo de
+  la empresa, Nombre del Producto, Precio, Ingredientes .(****ECHO***).
+
+
+
+*********************
+----BASE DE DATOS----
+*********************
+- Se cero tabla datos (Datos generales de la empresa contratante: nombre, direccion, telefono, email, gerente).
+
+- Se crea tabla estado la cual se relacionara con la mayoria de las tablas y delimitar los registros por su estado (Activo o Inactivo)
+
+- Se genero un boton con accion modal Bootstrap4 para visulizar la ficha del registro Tipo_producto.
+
+- CREAR MODULO DATOS INICIALES, que permita ingresar los datos principales de la empresa contratante
+  (Nombre, Direccion, Correo Electronico, Telefonos, logo, gerente), este modulo solo podra ser accesado por el Usuario Administrador (root)
+  este proceso es delicado el cliente contratante NO tendra informacion o acceso a el.
+
+- Se creo la Tabla Modal Producto [id, nombre_modal, img_modal] relacionandola con la tabla producto, logrando realizar un arreglo SQL Productos -> Modal
+
+- Se creo tabla visitas campos (id, ip, fecha) los cuales seran alimantado desde un scrip en la pagina principal del sitio web, este realizara
+un insert into SQL por cada visita de una direcion ip en una fecha unica con intervalos para realizar otro registro de la misma ip con diferencia de 1 hora
+en comparacion con el primer registro, asi lograriamos una estadistica mas fiable.
+
+
+*********************
+------ FALTANTE -----
+*********************
+
+En el modulo UpdateTipo.php preparar con un while el select para recibir el dato desde showTipo.php
+podria ser con una condicion if si el dato recibido es igual a 1 valor string es Activo Else inactivo (****ECHO***)
+
+- En la carpetas de imagenes product/types/tipo usuario /modal una imagen por defecto con formato jpg, con la intencion de usarla en su ficha de registro
+
+
+- Aplicar efecto Loanding al DashBoard principal este efecto usa archivo (link css, link javascrip, script js)... 
+
+- ###Desarrollar Modulo para Administrar las Promosiones#### 
+  CreatePromo (Listo).
+  UpdatePromo (Listo).
+  UpPublisher UP-DOW (listo).
+
+
+
+  ############## PENDIENTE POR SUBIR A HOSTING #############
+  newproducto.php -> opcion publicar en pagina de inicio.
+
+  createProducto.php - > nuevo campo validado (publico).
+
+  
+
+  
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
