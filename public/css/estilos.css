@@ -19,6 +19,7 @@
   --color-2: #b32488;
   --color-3: #98085f;
   --texto-desc: #606060;
+  --text-black: rgb(26, 25, 25);
   --gradiente: linear-gradient(90deg, rgb(224, 125, 217) 0%, rgba(238,98,245,1) 52%, rgba(241,39,223,1) 100%);
   --btn: rgba(241,39,223,1) 90%;
   --btn-hover: rgb(192, 7, 176)100%;
@@ -94,11 +95,16 @@ section {
   top: 0;
   left: -31rem;
   height: 100%;
-  width: 30rem;
+  width: 29rem;
   background: var(--gradiente);
   padding: 2rem;
   z-index: 1000;
 }
+
+/* -----------------------------------------------------------------------------------------------
+------------------------------------ ESTILOS PARA BARRA DE MENU ----------------------------------
+------------------------------------------------------------------------------------------------- */
+
 
 .header.active {
   left: 0;
@@ -108,6 +114,7 @@ section {
   font-size: 2.5rem;
   color: #fff;
   font-weight: bolder;
+  text-decoration: none;
 }
 
 .header .navbar {
@@ -118,13 +125,25 @@ section {
   display: block;
   margin: 2rem 0;
   font-size: 2rem;
-  color: #fff;
+  color: var(--color-3) !important;
+  text-decoration: none;
+  list-style: none !important;
+}
+
+.header .navbar ul.link_menu{
+  list-style: none;
 }
 
 .header .navbar a:hover {
+  color: #fff !important;
   text-decoration: underline;
-  text-underline-offset: .7rem;
+  font-size: 2.2rem;
 }
+
+/* -----------------------------------------------------------------------------------------------
+------------------------------------ ESTILOS PARA LA TARJETA -------------------------------------
+------------------------------------------------------------------------------------------------- */
+
 
 .header .share {
   text-align: center;
@@ -138,6 +157,7 @@ section {
   color: #5b0404;
   background: #fff;
   margin: 0 .3rem;
+  text-decoration: none;
 }
 
 .header .share a:hover {
@@ -530,9 +550,78 @@ section {
   color: #4e4c4c;
 }
 
+/* -----------------------------------------------------------------------------------------------
+------------------------------------ ESTILOS PARA LA TARJETA -------------------------------------
+------------------------------------------------------------------------------------------------- */
+
+.container .row  .col .card{
+  box-shadow: 0px 0px 0px 0px rgb(0 0 0 / 40%), 0px 2px 4px 0px rgb(0 0 0 / 60%);
+}
+
+
+.card-body{
+  background:
+  linear-gradient(90deg, rgba(247, 195, 242, 0.838) 10%, rgba(238,98,245,0.8240429961046919) 30%, rgba(232, 60, 143, 0.816) 80%);
+ 
+}
+
+.card-body h3{
+  text-align: center;
+  
+}
+
+.card-body h3:visited{
+  text-decoration: none;
+  color: #000;
+}
+
 .contact .row .contact-info .share a:hover {
   color: #ef6f6f;
 }
+
+
+
+/* ----------------------------------------------------------------------------------------------
+------------------------ ESTILOS PARA LOS LINKS FOOTER PAGE-------------------------------------
+------------------------------------------------------------------------------------------------ */
+
+.pie{
+  
+  background: rgba(237, 184, 244, 0.3);
+}
+
+  .pie .container .row .intem{
+    text-align: center;
+  }
+
+.row .list-unstyled li a{
+  text-decoration: none !important;
+  color: var(--text-black);
+ 
+}
+
+
+.pie .container .row .share a{
+  text-align: center;
+
+}
+
+.pie .container .row .share a{
+  height: 5rem;
+  width: 5rem;
+  line-height: 5rem;
+  font-size: 2rem;
+  color: #600352;
+  background: #fff;
+  opacity: 0.9px;
+  margin: 0 .3rem;
+  text-decoration: none;
+}
+
+
+
+
+
 
 @media (max-width: 1200px) {
   body.active {
